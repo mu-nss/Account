@@ -1,3 +1,10 @@
+# 실습1. 계좌 프로젝트 
+## Tools
+1. IntelliJ IDEA Community
+2. H2 Database
+
+<hr>
+
 ## H2 데이터베이스 연결
 
 - 인메모리 방식
