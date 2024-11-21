@@ -6,7 +6,8 @@ import com.example.account.repository.AccountRepository;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
+import javax.transaction.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -24,8 +25,7 @@ public class AccountService {
 
     @Transactional
     public Account getAccount(Long id) {
-        return accountRepository.findBy(id).get();
-
+        return accountRepository.findById(id).get();
     }
 
 }

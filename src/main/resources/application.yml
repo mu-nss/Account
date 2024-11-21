@@ -1,4 +1,7 @@
 spring:
+  redis:
+    host: 127.0.0.1
+    port: 6379
   datasource:
     url: jdbc:h2:mem:test
     username: sa
@@ -7,9 +10,6 @@ spring:
 h2:
   console:
     enabled: true
-#    settings:
-#        web-allow-others: true
-#    path: /h2-console
 jpa:
   defer-datasource-initialization: true
   database-platform: H2
