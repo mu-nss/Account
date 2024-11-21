@@ -1,0 +1,81 @@
+/* 삭제했던 파일 */
+
+package com.example.account;
+
+import lombok.*;
+import lombok.extern.slf4j.Slf4j;
+
+import java.time.LocalDateTime;
+
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor // 빈을 생성자 주입받을 때
+//@NoArgsConstructor
+@AllArgsConstructor
+@Slf4j
+public class testDto {
+    private String accountNumber;
+    private String nickname;
+    private LocalDateTime registeredAt;
+
+    // @Data
+    // 이거 하나만 적으면 @Getter, @Setter, @ToString을 따로 써주지 않아도 된다.
+    // 하지만 toString()이 자동 생성되기 때문에 민감한 정보가 흘러 나갈 수 있기 때문에
+    // 보안 문제가 발생하기 때문에 사용하지 않는다.
+
+    public void log() {
+        log.error("error is occurred.");
+    }
+}
+
+-------------------------------------------------------------------------------------
+package com.example.account;
+
+import org.junit.jupiter.api.Test;
+
+import java.time.LocalDateTime;
+
+class testDtoTest {
+
+    @Test
+    void accountDto() {
+        // given
+        // when
+        // then
+
+        // @AllArgsConstructor를 썼을 때 한번에 생성이 가능하다.
+        testDto accountDto = new testDto(
+                "accountNumber",
+                "summer",
+                LocalDateTime.now());
+
+//        accountDto.setAccountNumber("accountNumber");
+//        accountDto.setNickname("summer");
+
+        System.out.println(accountDto.getAccountNumber());
+        // toString()은 기본적으로 hashcode 값을 넣어서 보여준다.
+        System.out.println(accountDto.toString());
+     }
+}
+
+-----------------------------------------------------------------------------------
+package com.example.account;
+
+import lombok.experimental.UtilityClass;
+
+@UtilityClass
+public class NumberUtil {
+
+    // 생성자 쓰지 못하게 막아주기 위해서
+    // private NumberUtil() {} 을 작성하는데
+    // 귀찮으니깐 @UtilityClass 어노테이션을 사용해서 자동 생성한다.
+
+    public static Integer sum(Integer a,  Integer b) {
+        return a + b;
+    }
+
+    public static Integer minus(Integer a,  Integer b) {
+        return a - b;
+    }
+}
