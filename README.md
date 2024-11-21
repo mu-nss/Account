@@ -1,13 +1,15 @@
 # 실습1. 계좌 프로젝트 
-
-<h3>Tools</h2>
+## Tools
 1. IntelliJ IDEA Community
 2. H2 Database
+
+<hr>
 
 ## H2 데이터베이스 연결
 
 - 인메모리 방식
   - url: jdbc:h2:mem:test
+
 
 ### 문제점
 1. localhost8080/h2-console에 접속 시 WhiteError Pages 출력 됨
