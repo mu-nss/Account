@@ -22,7 +22,7 @@ public class LocalRedisConfig {
 
     @PreDestroy
     public void stopRedis() {
-        if(redisServer != null) {
+        if (redisServer != null) {
             redisServer.stop();
         }
     }

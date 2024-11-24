@@ -1,7 +1,11 @@
 package com.example.account.controller;
 
+/**
+ * 스프링 부트 테스트
+ **/
+
 import com.example.account.domain.Account;
-import com.example.account.domain.AccountStatus;
+import com.example.account.type.AccountStatus;
 import com.example.account.service.AccountService;
 import com.example.account.service.RedisTestService;
 import org.junit.jupiter.api.Test;
@@ -10,16 +14,13 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.mockito.BDDMockito.given;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-/**
- * 스프링 부트 테스트
- **/
 @WebMvcTest(AccountController.class)
 class AccountControllerTest {
     @MockBean
@@ -33,14 +34,15 @@ class AccountControllerTest {
 
     @Test
     void successGetAccount() throws Exception {
-        // given
+        //given
         given(accountService.getAccount(anyLong()))
                 .willReturn(Account.builder()
                         .accountNumber("3456")
                         .accountStatus(AccountStatus.IN_USE)
                         .build());
-        // when
-        // then
+
+        //when
+        //then
         mockMvc.perform(get("/account/876"))
                 .andDo(print()) // get을 했을 때 응답값을 콘솔에 출력해줌
                 .andExpect(jsonPath("$.accountNumber").value("3456"))
@@ -48,3 +50,4 @@ class AccountControllerTest {
                 .andExpect(status().isOk());
     }
 }
+

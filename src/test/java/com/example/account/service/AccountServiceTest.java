@@ -1,23 +1,24 @@
 package com.example.account.service;
 
 import com.example.account.domain.Account;
-import com.example.account.domain.AccountStatus;
+import com.example.account.type.AccountStatus;
 import com.example.account.repository.AccountRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 /**
  * Mockito 테스트
@@ -39,14 +40,32 @@ class AccountServiceTest {
                         .accountStatus(AccountStatus.UNREGISTERED)
                         .accountNumber("65789")
                         .build()));
+        ArgumentCaptor<Long> captor = ArgumentCaptor.forClass(Long.class);
         // when
         Account account = accountService.getAccount(4555L);
 
         // then
+        verify(accountRepository, times(1)).findById(captor.capture()); // 1번 호출되어야 한다.
+        verify(accountRepository, times(0)).save(any()); // 저장x, 호출되면 x
+        assertEquals(4555L, captor.getValue());
+        assertNotEquals(4555L, captor.getValue());
+        assertTrue(4555L == captor.getValue());
         assertEquals("65789", account.getAccountNumber());
         assertEquals(AccountStatus.UNREGISTERED, account.getAccountNumber());
     }
 
+    @Test
+    @DisplayName("계좌 조회 실패")
+    void testFailedToSearchAccount () {
+        // given
+        // when
+        // 결과를 알려주는게 아님, 이런 동작을 시켰을 때 예외 발생할 것이라는 동작을 알려주는 것
+        RuntimeException exception = assertThrows(RuntimeException.class,
+                () -> accountService.getAccount(-10L));
+
+        // then
+        assertEquals("65789", exception.getMessage());
+    }
 
     @Test
     @DisplayName("Test 이름 변경")

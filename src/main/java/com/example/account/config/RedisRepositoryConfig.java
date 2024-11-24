@@ -22,5 +22,4 @@ public class RedisRepositoryConfig {
 
         return Redisson.create(config);
     }
-
 }
