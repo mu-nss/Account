@@ -30,6 +30,8 @@ public class AccountService {
         AccountUser accountUser = accountUserRepository.findById(userId)
                 .orElseThrow(() -> new AccountException(ErrorCode.USER_NOT_FOUND));
 
+        validateCreatAccount(accountUser);
+
         // 계좌번호가 없으면 1000000000 부여
         // 가장 최근 계좌번호를 찾은 다음 +1하고 문자열로 변경 후 다음 계좌번호를 생성
         String newAccountNumber = accountRepository.findFirstByOrderByIdDesc()
@@ -48,6 +50,13 @@ public class AccountService {
                         .build()
                 )
         );
+    }
+
+    // 계좌가 10개인 경우 실패 응답
+    private void validateCreatAccount(AccountUser accountUser) {
+        if(accountRepository.countByAccountUser(accountUser) == 10) {
+            throw new AccountException(ErrorCode.MAX_ACCOUNT_PER_USER_10);
+        }
     }
 
     @Transactional

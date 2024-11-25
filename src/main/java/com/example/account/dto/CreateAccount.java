@@ -7,10 +7,10 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 public class CreateAccount {
-
     @Getter
     @Setter
     @AllArgsConstructor
+    @NoArgsConstructor
     public static class Request {
         @NotNull
         @Min(1) // 1부터 시작

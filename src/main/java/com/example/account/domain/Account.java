@@ -33,7 +33,7 @@ public class Account {
     private LocalDateTime unRegisteredAt;
 
     @CreatedDate // 자동저장기능
-    private LocalDateTime createAt;
+    private LocalDateTime createdAt;
     @LastModifiedDate
-    private LocalDateTime updateAt;
+    private LocalDateTime updatedAt;
 }
