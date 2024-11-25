@@ -30,7 +30,7 @@ public class Account {
     private Long balance;
 
     private LocalDateTime registeredAt;
-    private LocalDateTime unRegisteredA;
+    private LocalDateTime unRegisteredAt;
 
     @CreatedDate // 자동저장기능
     private LocalDateTime createAt;

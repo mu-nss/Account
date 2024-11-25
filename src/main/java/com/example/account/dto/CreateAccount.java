@@ -10,6 +10,7 @@ public class CreateAccount {
 
     @Getter
     @Setter
+    @AllArgsConstructor
     public static class Request {
         @NotNull
         @Min(1) // 1부터 시작
@@ -27,7 +28,15 @@ public class CreateAccount {
     @Builder
     public static class Response {
         private Long userId;
-        private Long accountNumber; // 계좌번호
+        private String accountNumber; // 계좌번호
         private LocalDateTime registeredAt; // 등록일시
+
+        public static Response from(AccountDto accountDto) {
+            return Response.builder()
+                    .userId(accountDto.getUserId())
+                    .accountNumber(accountDto.getAccountNumber())
+                    .registeredAt(accountDto.getRegisterAt())
+                    .build();
+        }
     }
 }
