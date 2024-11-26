@@ -7,7 +7,6 @@ import com.example.account.dto.DeleteAccount;
 import com.example.account.type.AccountStatus;
 import com.example.account.service.AccountService;
 import com.example.account.service.RedisTestService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.awt.*;
 import java.time.LocalDateTime;
 
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -52,7 +50,7 @@ class AccountControllerTest {
                         .unRegisteredAt(LocalDateTime.now())
                         .build()
                 );
-        // when
+
         // then
         mockMvc.perform(post("/account")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -76,7 +74,7 @@ class AccountControllerTest {
                         .unRegisteredAt(LocalDateTime.now())
                         .build()
                 );
-        // when
+
         // then
         mockMvc.perform(delete("/account")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -98,7 +96,6 @@ class AccountControllerTest {
                         .accountStatus(AccountStatus.IN_USE)
                         .build());
 
-        //when
         //then
         mockMvc.perform(get("/account/876"))
                 .andDo(print()) // get을 했을 때 응답값을 콘솔에 출력해줌
