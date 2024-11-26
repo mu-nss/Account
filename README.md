@@ -23,7 +23,11 @@
 
 ### 문제점2
 <p>
-  sql 파일에 사용자 데이터 추가 후 account.http 실행했는데 500번이 계속해서 발생되었다.
-  처음에는 구글링을 통해서 수정해봤지만 소용이 없었는데 에러 메세지에 constructor 관련 내용을 발견 후 
-  CreateAccount 클래스에 @NoArgsConstructor 추가하고 실행했더니 정상 작동되는 것을 확인했다.
+  sql 파일에 사용자 데이터 추가 후 account.http 실행했는데 500번이 계속해서 발생되었다.<br>
+  처음에는 구글링을 통해서 수정해봤지만 소용이 없었는데 에러 메세지에 constructor 관련 내용을 발견 후<br>
+  CreateAccount 클래스에 @NoArgsConstructor 추가하고 실행했더니 정상 작동되는 것을 확인했다.<br>
+  <br>
+  강사님 코드는 @NoArgsConstructor 붙여주지 않아도 테스트 통과되는데 안 되는 이유를 좀 더 찾아봐야할 것 같다.<br>
+  transaction > 잔액 파트 부분에서 어노테이션 안 붙였는데 같은 에러가 나왔음
+
 </p>
