@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
   "userId": 1,
-  "accountNumber": "1000000001",
+  "accountNumber": "1000000002",
   "amount": 20000
 }
 
@@ -13,7 +13,10 @@ POST http://localhost:8080/transaction/cancel
 Content-Type: application/json
 
 {
-  "transactionId": "dc46a8a595ec4d5e99238e63f9861435",
-  "accountNumber": "1000000001",
+  "transactionId": "e58802bbcf144c39ae590e3dd1766d2a",
+  "accountNumber": "1000000002",
   "amount": 20000
 }
+
+### query transaction
+GET http://localhost:8080/transaction/cb70f1c446d34c3e811673cbb7ce36d4

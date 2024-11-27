@@ -136,4 +136,14 @@ public class TransactionService {
 
         saveToGetTransaction(CANCEL, F, account, amount);
     }
+
+    // 잔액 사용 확인
+//    @Transactional
+    public TransactionDto queryTransaction(String transactionId) {
+
+        return TransactionDto.fromEntity(
+                transactionRepository.findByTransactionId(transactionId)
+                .orElseThrow(() -> new AccountException(ErrorCode.TRANSACTION_NOT_FOUND))
+        );
+    }
 }
