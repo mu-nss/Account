@@ -17,8 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import javax.validation.constraints.*;
 import java.time.LocalDateTime;
+
 import java.util.Objects;
 import java.util.UUID;
 
@@ -121,7 +121,7 @@ public class TransactionService {
         if (!Objects.equals(transaction.getAccount().getId(), account.getId())) {
             throw new AccountException(ErrorCode.TRANSACTION_ACCOUNT_UN_MATCH);
         }
-        if (!Objects.equals(transaction.getAccount(), amount)) {
+        if(!Objects.equals(transaction.getAmount(), amount)) {
             throw new AccountException(ErrorCode.CANCEL_MUST_FULLY);
         }
         if (transaction.getTransactedAt().isBefore(LocalDateTime.now().minusYears(1))) {

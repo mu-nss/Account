@@ -59,7 +59,7 @@ public class TransactionController {
                             request.getAmount())
             );
         } catch (AccountException e) {
-            log.error("Failed to use balance. ");
+            log.error("Failed to cancel balance. ");
 
             transactionService.saveFailedCancelTransaction(
                     request.getAccountNumber(),
