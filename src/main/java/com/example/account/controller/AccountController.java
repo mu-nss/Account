@@ -16,9 +16,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class AccountController {
     private final AccountService accountService;
-//    private final LockService redisTestService;
 
-    // 계좌생성
+    // 계좌 생성
     @PostMapping("/account")
     public CreateAccount.Response createAccount(
             @RequestBody @Valid CreateAccount.Request request
@@ -32,7 +31,7 @@ public class AccountController {
         );
     }
 
-    // 계좌해지
+    // 계좌 해지
     @DeleteMapping("/account")
     public DeleteAccount.Response deleteAccount(
             @RequestBody @Valid DeleteAccount.Request request
@@ -58,11 +57,6 @@ public class AccountController {
                                 .build())
                 .collect(Collectors.toList());
     }
-
-//    @GetMapping("/get-lock")
-//    public String getLock() {
-//        return redisTestService.getLock();
-//    }
 
     @GetMapping("/account/{id}")
     public Account getAccount(
